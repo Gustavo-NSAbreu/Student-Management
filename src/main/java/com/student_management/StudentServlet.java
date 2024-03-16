@@ -43,7 +43,7 @@ public class StudentServlet extends HttpServlet {
             
             new StudentsDAO().create(student);
 
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            req.getRequestDispatcher("student?method=GET").forward(req, resp);
         }
 
         protected void get(HttpServletRequest req, HttpServletResponse resp)
@@ -65,12 +65,12 @@ public class StudentServlet extends HttpServlet {
             );
             new StudentsDAO().update(student);
 
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            req.getRequestDispatcher("student?method=GET").forward(req, resp);
         }
         
         protected void delete(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
             new StudentsDAO().delete(req.getParameter("id"));
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            req.getRequestDispatcher("student?method=GET").forward(req, resp);
         }
 }

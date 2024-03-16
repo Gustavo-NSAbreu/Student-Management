@@ -6,6 +6,8 @@ Just run
 docker compose up
 ```
 
+Access this page: `http://localhost:8000/student-management/index.jsp`
+
 ## Using psql to check the data
 
 To access psql to check the database in the command line from Windows Powershell just run the following command:

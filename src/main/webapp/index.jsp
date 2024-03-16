@@ -108,6 +108,10 @@
     }
 
     .table-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       min-width: fit-content;
     }
 
@@ -169,6 +173,10 @@
       justify-content: center;
       align-items: center;
       gap: 0.35rem;
+    }
+
+    .empty-list-message {
+      margin-top: 2rem;
     }
   
   </style>
@@ -249,6 +257,9 @@
           </tbody>
         </c:if>
       </table>
+      <c:if test="${students.isEmpty()}">
+        <h4 class="empty-list-message">No student found</h>
+      </c:if>
     </section>
   </main>
 </body>
