@@ -1,23 +1,31 @@
 package com.student_management.model;
 
-import java.util.UUID;
-
 public class Student {
-    private UUID id = null;
+    private String id;
     private String firstName;
     private String lastName;
-    private Long studentId = null;
+    private Long registration;
+
+    public Student(String id) {
+        this.id = id;
+    }
 
     public Student(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+    public Student(String id, String firstName, String lastName, Long registration) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.registration = registration;
+    }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -37,12 +45,12 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public Long getStudentId() {
-        return studentId;
+    public Long getRegistration() {
+        return registration;
     }
 
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
+    public void setRegistration(Long registration) {
+        this.registration = registration;
     }
 
 }

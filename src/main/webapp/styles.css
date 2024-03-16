@@ -2,35 +2,157 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
-  box-sizing: border-box;
-
-
+  color: #f9fafb;
   -webkit-font-smoothing: antialiased;
 }
 
-body, input, button {
+body, main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+body {
+  background: #09090b;
+  width: 100%;
+}
+
+main {
+  width: 1040px;
+  gap: 2.5rem;
+}
+
+body, input, button, td {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 400;
   font-size: 1rem;
 }
 
-.main-container {
+form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  gap: 1.75rem;
+  color: #09090b;
+}
+
+dialog[open] {
+  justify-self: center;
+  align-self: center;
+
+  display: flex;
   align-items: center;
 
-  width: 100vw;
-  height: 100vh;
+  border: none;
+  border-radius: 4px;
+  padding: 1.5rem 2.5rem;
+
+  background: #f9fafb;
+}
+
+dialog::backdrop {
+  background: black;
+  opacity: 0.7;
+}
+
+table {
+  padding: 10px;
+  border-collapse: collapse;
+}
+
+td, th {
+  border-bottom: 1px solid #fff;
+  min-width: 13rem;
+  max-width: 13rem;
+  height: 3rem;
+  text-align: start;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+}
+
+td:nth-last-child(2), th:nth-last-child(2) {
+  text-align: end;
+}
+td:last-child, th:last-child {
+  text-align: center;
+}
+
+input {
+  color: black;
 }
 
 .header-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
+.table-container {
+  min-width: fit-content;
+}
+
+#open-student-creation-modal-button {
+  background: #f9fafb;
+  color: #020617;
+}
+
+.modal-header {
+  width: 100%;
+  text-align: left;
+  color: #09090b;
+}
+
+.student-modal-input-container {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.student-modal-button-container {
+  display: flex;
+  justify-content: end;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.base-button {
+  padding: 0.5rem 0.625rem;
+  border: none;
+  border-radius: 3px;
+}
+
+#create-student-button, .update-student-button {
+  background: #020617;
+}
+
+.close-modal-button {
+  background: #f9fafb;
+  border: 1px solid #020617;
+  color: #020617;
+}
+
+.base-text-input {
+  padding: 6px;
+  background: #f9fafb;
+  border-radius: 4px;
+  border: 1px solid #020617;
+}
+
+.text-black {
+  color: #020617;
+}
+.delete-button {
+  background-color: #9f1239;
+}
+
+.action-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem;
+}

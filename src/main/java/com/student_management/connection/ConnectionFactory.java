@@ -16,7 +16,7 @@ public class ConnectionFactory {
             e.printStackTrace();
         }
         try {
-            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
+            return DriverManager.getConnection("jdbc:postgresql://postgresql:5432/postgres", "postgres", "1234");
         } catch (SQLException exception) {
             exception.printStackTrace();
             return null;

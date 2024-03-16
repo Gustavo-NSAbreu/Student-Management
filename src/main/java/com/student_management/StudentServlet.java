@@ -1,8 +1,8 @@
 package com.student_management;
 
 import java.io.IOException;
+import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +13,27 @@ import com.student_management.model.Student;
 
 public class StudentServlet extends HttpServlet {
 
+    private static final String METHOD_DELETE = "DELETE";
+    private static final String METHOD_GET = "GET";
+    private static final String METHOD_POST = "POST";
+    private static final String METHOD_PUT = "PUT";
+
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+    protected void service(HttpServletRequest req, HttpServletResponse resp)
+        throws ServletException, IOException {
+        String method = req.getParameter("method");
+        if (method.equals(METHOD_GET)) {
+            get(req, resp);
+        } else if (method.equals(METHOD_POST)) {
+            post(req, resp);
+        } else if (method.equals(METHOD_PUT)) {
+            put(req, resp);
+        } else if (method.equals(METHOD_DELETE)) {
+            delete(req, resp);
+        }
+    }
+
+    protected void post(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
             
             Student student = new Student(
@@ -24,24 +43,34 @@ public class StudentServlet extends HttpServlet {
             
             new StudentsDAO().create(student);
 
-            resp.sendRedirect("http://localhost:8080/student-management/index.jsp");
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
         }
 
-        @Override
-        protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+        protected void get(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
-            
+
+            List<Student> students = new StudentsDAO().findAll();
+
+            req.setAttribute("students", students);
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
         }
 
-        @Override
-        protected void doPut(HttpServletRequest req, HttpServletResponse resp)
+        protected void put(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
+            Student student = new Student(
+                req.getParameter("id"),
+                req.getParameter("firstName"),
+                req.getParameter("lastName"),
+                Long.parseLong(req.getParameter("registration"))
+            );
+            new StudentsDAO().update(student);
 
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
         }
-
-        @Override
-        protected void doDelete(HttpServletRequest req, HttpServletResponse resp)
+        
+        protected void delete(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
-
+            new StudentsDAO().delete(req.getParameter("id"));
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
         }
 }
